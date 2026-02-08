@@ -1,0 +1,36 @@
+# Build directories
+target/
+build/
+out/
+bin/
+
+# Compiled classes
+*.class
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.bak
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.DS_Store
+Thumbs.db
+
+# Maven/Gradle caches
+.m2/
+.gradle/
+dependency-reduced-pom.xml
+
+# Environment files (امنیت توکن!)
+.env
+application-local.yml
+*.secret
+
+# Docker
+docker-compose.override.yml

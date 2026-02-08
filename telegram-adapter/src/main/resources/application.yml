@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: telegram-adapter
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+telegram:
+  bot:
+    username: "zhra002021bot"
+
+logging:
+  level:
+    root: WARN
+    com.urfu.catbot: INFO
+    org.telegram: ERROR

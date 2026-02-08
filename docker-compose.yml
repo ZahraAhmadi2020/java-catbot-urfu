@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: catbot-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - catbot-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: catbot-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: catdb
+      POSTGRES_USER: catuser
+      POSTGRES_PASSWORD: catpass123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U catuser -d catdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - catbot-network
+
+volumes:
+  rabbitmq_data:
+  postgres_data:
+
+networks:
+  catbot-network:
+    driver: bridge
